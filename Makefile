@@ -2,7 +2,7 @@ TARGET := common-plugin.so
 SOURCES := plugin.c
 
 CC := gcc
-CFLAGS := -Wall -Wextra -O2 -fPIC -DHAVE_STDINT_H
+CFLAGS := -Wall -Wextra -std=gnu11 -O2 -fPIC -DHAVE_STDINT_H
 
 DEP_FILES := $(TARGET:.so=.d)
 
@@ -14,6 +14,6 @@ clean:
 	$(RM) $(TARGET) $(DEP_FILES)
 
 $(TARGET): $(SOURCES)
-	$(CC) -shared $(CFLAGS) -MD -MMD -o $@ $^
+	$(CC) -shared $(CFLAGS) -MMD -o $@ $^
 
 -include $(DEP_FILES)
